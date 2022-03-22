@@ -929,3 +929,7 @@ input[type=radio] {
   right: 0;
   margin: auto;
 }
+
+.dummymodel{
+  inset: auto;
+}

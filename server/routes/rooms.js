@@ -16,7 +16,7 @@ router.get('/rooms', requireJWT, (req, res) => {
     })
 })
 
-router.post('/rooms',  (req, res) => {
+router.post('/room',  (req, res) => {
   Room.create(req.body)
     .then(room => {
       res.status(201).json(room)
@@ -26,7 +26,7 @@ router.post('/rooms',  (req, res) => {
     })
 })
 
-router.put('/rooms/:id', requireJWT, (req, res) => {
+router.put('/room/:id', requireJWT, (req, res) => {
   const { id } = req.params
   // If the recurring array is empty, the booking is not recurring
   if (req.body === 0) {
@@ -41,7 +41,7 @@ router.put('/rooms/:id', requireJWT, (req, res) => {
 })
 
 // Delete a room
-router.delete('/rooms/:id', requireJWT, (req, res) => {
+router.delete('/room/:id', requireJWT, (req, res) => {
   const { id } = req.params
   Room.find({id: id}).remove().then(room => {
       res.status(201).json(room)

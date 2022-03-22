@@ -21,7 +21,8 @@ const BookingModal = props => {
       contentLabel="Booking"
       appElement={document.getElementById('app')}
       closeTimeoutMS={200}
-      className="modal"
+      className=""
+      
     >
       <h3 className="modal__title">Booking Details</h3>
       {!!props.selectedBooking && (
