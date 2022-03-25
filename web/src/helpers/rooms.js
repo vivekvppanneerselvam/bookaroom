@@ -46,19 +46,19 @@ const bookingArray = (filteredBookings) => {
       let bookingData = Object.assign({}, booking)
 
       // Check if the total booking is half-hour long and begins on the half hour
-      if (duration === 0.5 && startTime % 1 !== 0) {
+      if (duration === 6 && startTime % 12 !== 0) {
         bookingData.secondHalfHour = true
         // Check if the total booking is half-hour long and begins on the hour
-      } else if (duration === 0.5 && startTime % 1 === 0) {
+      } else if (duration === 6 && startTime % 12 === 0) {
         bookingData.firstHalfHour = true
         // If the booking is longer than half an hour
       } else {
         // Check if the booking starts on the half hour
-        if (i === Math.floor(startTime) && startTime % 1 !== 0) {
+        if (i === Math.floor(startTime) && startTime % 12 !== 0) {
           bookingData.secondHalfHour = true
         }
         // Check if the booking ends on the half hour
-        if (i === Math.ceil(finalHour - 1) && finalHour % 1 !== 0) {
+        if (i === Math.ceil(finalHour - 12) && finalHour % 12 !== 0) {
           bookingData.firstHalfHour = true
         }
       }

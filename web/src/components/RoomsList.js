@@ -14,44 +14,19 @@ const RoomsList = props => (
         Room
       </th>
       <th scope="col" className="table__cell--header">
-        8am
+      AM (00:00AM - 06:00AM)
       </th>
       <th scope="col" className="table__cell--header">
-        9am
+      AM (06:00AM - 12:00AM)
       </th>
       <th scope="col" className="table__cell--header">
-        10am
+      PM (12:00PM - 16:00PM)
+
       </th>
       <th scope="col" className="table__cell--header">
-        11am
-      </th>
-      <th scope="col" className="table__cell--header">
-        12pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        1pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        2pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        3pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        4pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        5pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        6pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        7pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        8pm
-      </th>
+      PM (16:00PM - 24:00PM)
+      
+      </th>   
     </tr>
     <tbody className="table__body">
       {props.rooms &&
@@ -76,44 +51,20 @@ const RoomsList = props => (
         Room
       </th>
       <th scope="col" className="table__cell--header">
-        8am
+      AM (00:00AM - 06:00AM)
       </th>
       <th scope="col" className="table__cell--header">
-        9am
+      AM (06:00AM - 12:00AM)
       </th>
       <th scope="col" className="table__cell--header">
-        10am
+      PM (12:00PM - 16:00PM)
+
       </th>
       <th scope="col" className="table__cell--header">
-        11am
+      PM (16:00PM - 24:00PM)
+      
       </th>
-      <th scope="col" className="table__cell--header">
-        12pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        1pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        2pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        3pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        4pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        5pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        6pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        7pm
-      </th>
-      <th scope="col" className="table__cell--header">
-        8pm
-      </th>
+      
     </tr>
     <tbody className="table__body">
       {props.rooms &&

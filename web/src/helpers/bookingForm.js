@@ -30,6 +30,16 @@ export const startTimeSelectOptions = [
   <option value="20:30">8:30pm</option>
 ]
 
+export const slotTimeSelectOptions = [
+    <option value="00.00am-06:00am">12am-6am(Early Morning)</option>,
+    <option value="06:00am-11:59am">6am-11:59am(Morning)</option>,
+    <option value="12:00pm-18:00pm">12pm-6pm(Noon)</option>,
+    <option value="18:00pm-24:00pm">6pm-11:59pm(Evening)</option>,
+    <option value="00.00am-11:59am">00.00am-11:59am(First Half)</option>,
+    <option value="12:00pm-24:00pm">12:00pm-24:00pm(second Half)</option>,
+    <option value="00.00am-24:00pm">00.00am-24:00pm(All Day)</option>
+]
+
 export const endTimeSelectOptions = [
   <option value="8:30">8:30am</option>,
   <option value="9:00">9:00am</option>,
@@ -44,7 +54,7 @@ export const endTimeSelectOptions = [
   <option value="13:30">1:30pm</option>,
   <option value="14:00">2:00pm</option>,
   <option value="14:30">2:30pm</option>,
-  <option value="15:00">3:00pm</option>,
+  <option value="15:00">3:00pm</option>, 
   <option value="15:30">3:30pm</option>,
   <option value="16:00">4:00pm</option>,
   <option value="16:30">4:30pm</option>,

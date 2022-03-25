@@ -13,26 +13,49 @@ const BookingFormTable = props => (
         <th className="table__cell--header">Bookings</th>
       </tr>
     </thead>
+   
     <tbody className="table__body--booking">
       <tr className="table__row--full">
-        <th scope="row">8am</th>
+        <th scope="row">00:00AM - 06:00AM (Early Morning)</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
-            hour={8}
+            start={0}
+            hour={6}
             onShowBooking={props.onShowBooking}
           />
       </tr>
       <tr className="table__row--full">
-        <th scope="row">9am</th>
+        <th scope="row">06:00AM - 12:00AM(Morning)</th>
           <ColumnCell
             date={props.date}
             bookings={props.roomData.bookings}
-            hour={9}
+            start={7}
+            hour={12}
             onShowBooking={props.onShowBooking}
           />
       </tr>
       <tr className="table__row--full">
+        <th scope="row">12:00PM - 16:00PM(Noon)</th>
+          <ColumnCell
+            date={props.date}
+            bookings={props.roomData.bookings}
+            start={13}
+            hour={18}
+            onShowBooking={props.onShowBooking}
+          />
+      </tr>
+      <tr className="table__row--full">
+        <th scope="row">16:00PM - 24:00PM(Evening)</th>
+          <ColumnCell
+            date={props.date}
+            bookings={props.roomData.bookings}
+            start={19}
+            hour={24}
+            onShowBooking={props.onShowBooking}
+          />
+      </tr>
+      {/* <tr className="table__row--full">
         <th scope="row">10am</th>
           <ColumnCell
             date={props.date}
@@ -130,7 +153,7 @@ const BookingFormTable = props => (
             hour={20}
             onShowBooking={props.onShowBooking}
           />
-      </tr>
+      </tr> */}
     </tbody>
   </table>
 )

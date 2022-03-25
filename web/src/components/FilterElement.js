@@ -35,8 +35,8 @@ function FilterElement({
           </div>
         </div>
 
-        <h4 className="form__heading form__heading--filter">Features</h4>
-        <div onChange={(event) => onToggleFeature(event.target.name)} >
+        {/* <h4 className="form__heading form__heading--filter">Features</h4> */}
+        {/* <div onChange={(event) => onToggleFeature(event.target.name)} >
           <div className="form__group">
             <input type="checkbox" id="macLab" name="macLab" className="form__input--checkbox" checked={filterParams[0].value} />
             <label for="macLab" className="form__label form__label--inline">Mac Lab</label>
@@ -57,9 +57,9 @@ function FilterElement({
             <input type="checkbox" id="projector" name="projector" className="form__input--checkbox" checked={filterParams[4].value} />
             <label for="projector" className="form__label form__label--inline">Projector</label>
           </div>
-        </div>
-        <h4 className="form__heading form__heading--filter">Capacity</h4>
-        <div onChange={ (event) => onToggleCapacity(event.target.id)}>
+        </div> */}
+        {/* <h4 className="form__heading form__heading--filter">Capacity</h4> */}
+        {/* <div onChange={ (event) => onToggleCapacity(event.target.id)}>
           <div className="form_group">
             <input type="checkbox" id="16seats" name="16seats" className="form__input--checkbox" checked={capacityParams[0].value} />
             <label for="16seats" className="form__label form__label--inline">16 Seats</label>
@@ -80,7 +80,7 @@ function FilterElement({
             <input type="checkbox" id="40seats" name="40seats" className="form__input--checkbox" checked={capacityParams[4].value} />
             <label for="40seats" className="form__label form__label--inline">40 Seats</label>
           </div>
-        </div>
+        </div> */}
         <h4 className="form__heading form__heading--filter">Availability</h4>
           <div onChange={(event) => onSetAvailabilityParam(event.target.value)} >
             <div className="form_group">
