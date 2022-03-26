@@ -481,7 +481,7 @@ td.rdtYear:hover {
 }
 .table__cell--business-unit-1 {
   background: #70d6ff;
-  padding: 3rem 0;
+  
   cursor: pointer;
 }
 .table__cell--business-unit-1.table__cell--first-half-hour {
@@ -489,7 +489,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-1.table__cell--second-half-hour {
@@ -497,7 +497,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: right;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-2 {
@@ -510,7 +510,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-2.table__cell--second-half-hour {
@@ -523,7 +523,7 @@ td.rdtYear:hover {
 }
 .table__cell--business-unit-3 {
   background: #ef709d;
-  padding: 3rem 0;
+  
   cursor: pointer;
 }
 .table__cell--business-unit-3.table__cell--first-half-hour {
@@ -531,7 +531,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-3.table__cell--second-half-hour {
@@ -539,7 +539,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: right;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-4 {
@@ -552,7 +552,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 3rem 0;
+ 
   width: 50%;
 }
 .table__cell--business-unit-4.table__cell--second-half-hour {
@@ -560,7 +560,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: right;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 .table__cell--business-unit-5 {
@@ -573,7 +573,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 3rem 0;
+ 
   width: 50%;
 }
 .table__cell--business-unit-5.table__cell--second-half-hour {
@@ -581,7 +581,7 @@ td.rdtYear:hover {
   cursor: pointer;
   display: block;
   float: right;
-  padding: 3rem 0;
+  
   width: 50%;
 }
 html {

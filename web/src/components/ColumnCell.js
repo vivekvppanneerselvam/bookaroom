@@ -35,7 +35,7 @@ const ColumnCell = props => {
           .replace(/ /g, '-')
           .toLowerCase()}`
         }>
-        {bookingData.businessUnit}
+       Unavailable
       </td>
     }else{
       columnData = <td className="table__cell--available">Available</td>

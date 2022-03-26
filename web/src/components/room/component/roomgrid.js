@@ -8,7 +8,7 @@ import '@ag-grid-community/all-modules/dist/styles/ag-theme-balham.css'
 import Modal from '../../../components/modal'
 import Confirmation from '../../../components/confirmation'
 import RoomForm from './roomform'
-import { listRooms } from '../../../api/rooms'
+import { listRooms, deleteRoom } from '../../../api/rooms'
 
 
 function RoomGrid(props) {
@@ -21,7 +21,7 @@ function RoomGrid(props) {
     let gridOptions = {
         modules: AllCommunityModules,
         columnDefs: [
-            { headerName: 'id', field: '_id', width: 50, filter: false },
+            { headerName: 'id', field: '_id', width: 200, filter: false },
             { headerName: "no", field: "no", width: 100 },
             { headerName: "name", field: "name", width: 150 },
             { headerName: "floor", field: "floor", width: 150 },
@@ -67,7 +67,8 @@ function RoomGrid(props) {
         setIsModalOpen(!isModalOpen)
         setPopupData(data)
     }
-    const deleteClickHandler = () => {
+    const deleteClickHandler = (data) => {
+        setPopupData(data)
         setModalDeleteFlg(true)
     }
     function closeHandler() {
@@ -77,7 +78,13 @@ function RoomGrid(props) {
 
     function confirmationHandler(value, data) {
         if (value === 'yes') {
-
+            deleteRoom(data._id).then(rooms => {
+                        alert("Successfully deleted room "+ data._id)  ;
+                        setModalDeleteFlg(false)
+            }).catch(error => {                
+                console.error('Error deleting room data', error)        })
+                alert("Error deleting room "+ data._id)  ;
+                setModalDeleteFlg(false)
         } else {
             setModalDeleteFlg(false)
         }
@@ -95,7 +102,7 @@ function RoomGrid(props) {
             {modalDeleteFlg && <Confirmation
                 showModal={modalDeleteFlg}
                 handleClose={(e) => closeHandler()}
-                handleConfirmationMessage={(e) => confirmationHandler(e)}
+                handleConfirmationMessage={(e) => confirmationHandler(e, popupData)}
                 title={'confirmation'}
             > <span>Are you sure you want to delete the record</span>
 

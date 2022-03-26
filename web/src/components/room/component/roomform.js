@@ -5,6 +5,7 @@ import { editRoom, addRoom } from '../../../api/rooms'
 
 function RoomForm(props) {
     const [state, setState] = useState({
+        _id:"",
         no: "",
         name: "",
         floor: "",
@@ -15,10 +16,6 @@ function RoomForm(props) {
         }
     })
 
-
-
-
-
     useEffect(() => {
         console.log("haha", props.isCreate, props.defaults)
         if (props.isCreate !== undefined) {
@@ -28,8 +25,6 @@ function RoomForm(props) {
             }
         }
     }, [])
-
-
 
     function onChangeHandler(e) {
         let key = e.target.id, value = e.target.value
@@ -53,7 +48,7 @@ function RoomForm(props) {
             <div className={'form-group row'}>
                 <label className={'col-sm-4 col-form-label'} style={{textAlign:'end'}}>Room No</label>
                 <div className={'col-md-4'}>
-                    <input type="text" className="form-control rounded-0" id={'price'} value={state.price} maxLength={10} onChange={(e) => {
+                    <input type="text" className="form-control rounded-0" id={'no'} value={state.no} maxLength={10} onChange={(e) => {
                         if (isNaN(Number(e.target.value))) {
                             return;
                         } else onChangeHandler(e)

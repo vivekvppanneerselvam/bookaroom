@@ -126,13 +126,12 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div> */}
             <div className="form__group">
               <label className="form__label form__label--booking">
-                {'Business Unit'}
-                <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
-                  <option value="Business Unit 1">Business Unit 1</option>
-                  <option value="Business Unit 2">Business Unit 2</option>
-                  <option value="Business Unit 3">Business Unit 3</option>
-                  <option value="Business Unit 4">Business Unit 4</option>
-                  <option value="Business Unit 5">Business Unit 5</option>
+                {'Select Suite Type'}
+                <select name="business" defaultValue="General Suite With AC" className="form__input form__input--select">
+                  <option value="General Suite With AC">General Suite With AC</option>
+                  <option value="ICU">ICU</option>
+                  <option value="Surgical">Surgical</option>
+                  <option value="General Suite With NON-AC">General Suite With NON-AC</option>                  
                 </select>
               </label>
             </div>

@@ -28,10 +28,20 @@ router.post('/room',  (req, res) => {
 
 router.put('/room/:id', requireJWT, (req, res) => {
   const { id } = req.params
-  // If the recurring array is empty, the booking is not recurring
-  if (req.body === 0) {
-    Room.findByIdAndUpdate(id, req.body,
-      { upsert: true }).then(room => {
+  console.log(req.body)
+  if (req.body !== 0) {
+    console.log("asdfasd")
+    Room.findByIdAndUpdate(id, 
+      {
+        name: req.body.name,
+        floor: req.body.floor,
+        capacity: req.body.capacity,
+        no: req.body.no,
+        wingName: req.body.wingName,
+        assets: req.body.assets,
+      }
+      
+    ).then(room => {
         res.status(201).json(room)
       })
       .catch(error => {
@@ -43,7 +53,7 @@ router.put('/room/:id', requireJWT, (req, res) => {
 // Delete a room
 router.delete('/room/:id', requireJWT, (req, res) => {
   const { id } = req.params
-  Room.find({id: id}).remove().then(room => {
+  Room.find({_id: id}).remove().then(room => {
       res.status(201).json(room)
     }).catch(error => {
       res.status(400).json({ error })

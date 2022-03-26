@@ -8,11 +8,12 @@ export function listRooms() {
 
 
 export function addRoom(data) {
+  delete data['_id'];
   return api.post('/room', data).then(res => res.data)
 }
 
 export function editRoom(data) {
-  return api.put(`/room/${data.roomId}`, data).then(res => res.data)
+  return api.put(`/room/${data._id}`, data).then(res => res.data)
     .catch(err => alert(err.response.data.error.message.match(/error:.+/i)[0]))
 }
 
