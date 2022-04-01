@@ -131,7 +131,7 @@ const rowMapper = (dayHours, props) => {
 
 const RoomRow = props => (
   <tr className="table__row">
-    <th scope="row" className="table__cell--align-left">
+    <th scope="row" className="table__cell--align-left" style={{width:'122px'}}>
       <Link to="/createbooking" onClick={() => props.onSetRoom(props.room._id)} className="table__link">{props.room.name}</Link>
       <ul >
         {Object.keys(props.room.assets).map(

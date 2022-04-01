@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import BookingFormTable from './BookingFormTable'
 import Datetime from 'react-datetime'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import { formatTime, startTimeSelectOptions, endTimeSelectOptions, slotTimeSelectOptions } from '../helpers/bookingForm'
+import { fetchInstitutes, getProviders } from '../api/rooms'
+
 
 function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onShowBooking, disableRecurring, onToggleRecurring }) {
   // Disable sunday (day 0) on the calendar as an booking option
@@ -48,13 +50,40 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
       else if (value.includes("12:00pm")) return "12:00"
       else return "18:00"
     }
-    if(type == "end"){
+    if (type == "end") {
       if (value.includes("06.00am")) return "06:00"
       else if (value.includes("11:59am")) return "11:59"
       else if (value.includes("18:00pm")) return "18:00"
       else return "24:00"
     }
 
+  }
+  const [insOptions, setInsOptions] = useState([])
+  const [provOptions, setProvOptions] = useState([])
+  const [dropDown, setDropDown] = useState({
+    institute:'',
+    provider:"",
+  })
+  useEffect(() => {
+    fetchInstitutes().then(resp => {
+      setInsOptions(resp)
+    }).catch(error => {
+      console.error('Error loading location data', error)
+    })
+
+    getProviders().then(resp => {
+      setProvOptions(resp)
+    }).catch(error => {
+      console.error('Error loading location data', error)
+    })
+  },[])
+
+  function dropDownChange(e){
+    let id = e.target.id, value = e.target.value
+    setDropDown(prev=>{
+      prev[id] = value
+      return({...prev})
+    })
   }
 
   return (
@@ -86,7 +115,22 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
         let recurringData = handleRecurringData(recurringType, recurringEnd)
         const purpose = formData.purpose.value
         const description = formData.description.value
-        onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData })
+        const specialtyDepC = formData.specialty.value
+        let obj = insOptions.find((o, i) => {
+          if (o.specialtyDepC === specialtyDepC) {
+            return true; // stop searching
+          }
+        })
+        const spectialyNdGroup = Object.keys(obj).length !== 0 ? obj.instituteGroupName +"|"+ obj.specialty:''
+        const provId = formData.provider.value
+        let obj1 = provOptions.find((o, i) => {
+          if (o.provId === provId) {
+            return true; // stop searching
+          }
+        })
+        const provName = Object.keys(obj1).length !== 0 ?  obj['provName']: ''
+
+          onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData })
       }}>
         <div className="row">
           <div className="col-md-4">
@@ -102,9 +146,10 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           <div className="col-md-4">
             <BookingFormTable roomData={roomData} date={date} onShowBooking={onShowBooking} />
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4" style={{ background: "lightgray" }}>
             <h3 className="header__heading header__heading--column">Make a Booking</h3>
             <div className="form__group">
+              <span>Start Date: {moment(date).format('MMMM Do YYYY')}</span>
               <label className="form__label form__label--booking">
                 {'Slot time'}
                 <select name="startTime" className="form__input form__input--select">
@@ -126,17 +171,6 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div> */}
             <div className="form__group">
               <label className="form__label form__label--booking">
-                {'Select Suite Type'}
-                <select name="business" defaultValue="General Suite With AC" className="form__input form__input--select">
-                  <option value="General Suite With AC">General Suite With AC</option>
-                  <option value="ICU">ICU</option>
-                  <option value="Surgical">Surgical</option>
-                  <option value="General Suite With NON-AC">General Suite With NON-AC</option>                  
-                </select>
-              </label>
-            </div>
-            <div className="form__group">
-              <label className="form__label form__label--booking">
                 {'Recurring'}
                 <span>
                   <select name="recurring" defaultValue="none" onChange={(event) => onToggleRecurring(event.target.value)} className="form__input form__input--select">
@@ -152,7 +186,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
               {'Recurring end date'}
               <input type="date" name="recurringEndDate" disabled={disableRecurring} className="form__input--date" />
             </label>
-            <div className="form__group">
+            {/* <div className="form__group">
               <label className="form__label form__label--booking">
                 {'Purpose'}
                 <select name="purpose" defaultValue="Scheduled class" className="form__input form__input--select">
@@ -161,7 +195,45 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
                   <option value="Ad-hoc Event">Ad-hoc event</option>
                 </select>
               </label>
+            </div> */}
+            <div className="form__group">
+              <label className="form__label form__label--booking">
+                {'Select Speciality'}
+                <select id="specialty" name={'specialty'} value={dropDown.specialty} onChange={dropDownChange} >
+                  <option value=""></option>
+                  {insOptions.map(item => {
+                    return <option value={item.specialtyDepC} > {item.instituteGroupName} | {item.specialty}</option>
+                  })
+                  }
+                </select>
+              </label>
             </div>
+
+            <div className="form__group">
+              <label className="form__label form__label--booking">
+                {'Select Provider'}
+                <select value={dropDown.provider} id="provider" name={'provider'} onChange={dropDownChange} >
+                  <option value=""></option>
+                  {provOptions.map(item => {
+                    if (item.specialtyDepC == dropDown.specialty )
+                      return <option value={item.provId} > {item.provName} | {item.provType}</option>
+                  })
+                  }
+                </select>
+              </label>
+            </div>
+{/* 
+            <div className="form__group">
+              <label className="form__label form__label--booking">
+                {'Select Suite Type'}
+                <select name="business" defaultValue="General Suite With AC" className="form__input form__input--select">
+                  <option value="General Suite With AC">General Suite With AC</option>
+                  <option value="ICU">ICU</option>
+                  <option value="Surgical">Surgical</option>
+                  <option value="General Suite With NON-AC">General Suite With NON-AC</option>
+                </select>
+              </label>
+            </div> */}
             <div className="form__group">
               <label className="form__label form__label--booking">
                 {'Description'}

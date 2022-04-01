@@ -2,9 +2,19 @@ const express = require('express')
 const moment = require('moment')
 const momentTimezone = require('moment-timezone')
 const Room = require('../models/Room')
+const Location = require('../models/Location')
 const { requireJWT } = require('../middleware/auth')
 
 const router = new express.Router()
+
+
+router.get('/locations', requireJWT, (req, res) => {
+  Location.find().then(locs => {
+        res.json(locs)
+      }).catch(error => {
+        res.json({ error })
+      })
+})
 
 router.get('/rooms', requireJWT, (req, res) => {
   Room.find()

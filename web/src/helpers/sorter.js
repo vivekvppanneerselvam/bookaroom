@@ -36,7 +36,8 @@ export const roomSorter = (roomList, floorNumber) => {
   let nameOther = numericalSort(
     filteredList.filter(room => room.name[0] !== 'S' && room.name[0] !== 'R')
   )
-  
+  console.log("filteredList",filteredList)
   // re-combine the sorted rooms, studios and others into a single array
-  return nameRoom.concat(nameStudio).concat(nameOther)
+  //return nameRoom.concat(nameStudio).concat(nameOther)
+  return filteredList
 }

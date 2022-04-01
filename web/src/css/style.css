@@ -430,7 +430,7 @@ td.rdtYear:hover {
 }
 .table__row th {
   border: 1px solid #cecece;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 .table__row--header {
   background: #cecece;
@@ -474,7 +474,7 @@ td.rdtYear:hover {
   height: 3rem;
 }
 .table .table__row th {
-  height: 6rem;
+  /* height: 6rem; */
 }
 .table .table__row--subheader th {
   height: 4rem;
@@ -588,8 +588,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background: #f4f4f4;
-  font-family: "proxima-nova", sans-serif;
+ 
   font-size: 1.6rem;
   padding: 0;
   margin: 0 auto;
@@ -768,7 +767,7 @@ li {
 }
 .form__label--inline {
   display: inline-block;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   padding-left: 1rem;
   margin: 0.3rem auto;
 }
@@ -930,6 +929,50 @@ input[type=radio] {
   margin: auto;
 }
 
-.dummymodel{
+.dummymodal{
   inset: auto;
+  position: absolute;
+  
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
+
+.tabbable-panel {
+  border: 1px solid #eee;
+}
+
+.tabbable-line>.nav-tabs {
+  border: none;
+  margin: 10px;
+}
+
+.tabbable-line>.tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.tabbable-line>.nav-tabs>li {
+  margin-right: 3%;
+}
+
+.tabbable-line>.nav-tabs>li.active, .tabbable-line>.nav-tabs>li>a.active {
+  border-bottom: 4px solid #f3565d;
+  position: relative;
+}
+
+.tabbable-line>.nav-tabs>li.active, .tabbable-line>.nav-tabs>li>a.active {
+  border-bottom: 4px solid #f3565d;
+  position: relative;
+}
+
+.nav-tabs> li> a{
+  padding: 0;
 }
