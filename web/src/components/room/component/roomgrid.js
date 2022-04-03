@@ -9,7 +9,7 @@ import Modal from '../../../components/modal'
 import Confirmation from '../../../components/confirmation'
 import RoomForm from './roomform'
 import { listRooms, deleteRoom } from '../../../api/rooms'
-
+import { deleteBooking } from '../../../api/booking'
 
 function RoomGrid(props) {
     const [gridApi, setGridApi] = useState(null)
@@ -26,7 +26,7 @@ function RoomGrid(props) {
             { headerName: "name", field: "name", width: 150 },
             { headerName: "floor", field: "floor", width: 150 },
             { headerName: "wing name", field: "wingName", width: 100 },
-            { headerName: "capacity", field: "capacity", width: 150 },           
+            { headerName: "capacity", field: "capacity", width: 150 },
             { headerName: "", field: "edit", filter: false, width: 70, cellRendererFramework: clickableField },
             { headerName: "", field: "delete", filter: false, width: 70, cellRendererFramework: clickableField }
         ],
@@ -56,10 +56,11 @@ function RoomGrid(props) {
     }
     useEffect(() => {
         listRooms().then(rooms => {
-            setRowData(rooms)           
+            setRowData(rooms)
         }).catch(error => {
-            console.error('Error loading room data', error)        })
-    }, [])  
+            console.error('Error loading room data', error)
+        })
+    }, [])
 
 
     const editClickHandler = (data) => {
@@ -75,16 +76,21 @@ function RoomGrid(props) {
         setIsModalOpen(false)
         setModalDeleteFlg(false)
     }
-
+   const onDeleteBooking = (roomId, bookingId) => {
+        deleteBooking(roomId, bookingId)
+            .then(res => {
+                alert('Booking successfully deleted')
+                setModalDeleteFlg(false)
+            }).catch(error => {
+                alert("Error deleting room " + bookingId);
+                console.error(error.message)
+            })
+    }
     function confirmationHandler(value, data) {
         if (value === 'yes') {
-            deleteRoom(data._id).then(rooms => {
-                        alert("Successfully deleted room "+ data._id)  ;
-                        setModalDeleteFlg(false)
-            }).catch(error => {                
-                console.error('Error deleting room data', error)        })
-                alert("Error deleting room "+ data._id)  ;
-                setModalDeleteFlg(false)
+            // Deletes a booking from the database and updates the React state
+            onDeleteBooking(data.no, data._id)            
+            setModalDeleteFlg(false)
         } else {
             setModalDeleteFlg(false)
         }

@@ -197,30 +197,26 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
               </label>
             </div> */}
             <div className="form__group">
-              <label className="form__label form__label--booking">
-                {'Select Speciality'}
-                <select id="specialty" name={'specialty'} value={dropDown.specialty} onChange={dropDownChange} >
-                  <option value=""></option>
+              <label className="form__label form__label--booking">{'Select Speciality'}</label>
+              <select id="specialty" name={'specialty'} value={dropDown.specialty} onChange={dropDownChange} >
+                  <option value="">Select</option>
                   {insOptions.map(item => {
                     return <option value={item.specialtyDepC} > {item.instituteGroupName} | {item.specialty}</option>
                   })
                   }
                 </select>
-              </label>
             </div>
 
             <div className="form__group">
-              <label className="form__label form__label--booking">
-                {'Select Provider'}
-                <select value={dropDown.provider} id="provider" name={'provider'} onChange={dropDownChange} >
-                  <option value=""></option>
+              <label className="form__label form__label--booking">{'Select Provider'}</label>
+              <select value={dropDown.provider} id="provider" name={'provider'} onChange={dropDownChange} >
+                  <option value="">Select</option>
                   {provOptions.map(item => {
                     if (item.specialtyDepC == dropDown.specialty )
                       return <option value={item.provId} > {item.provName} | {item.provType}</option>
                   })
                   }
                 </select>
-              </label>
             </div>
 {/* 
             <div className="form__group">

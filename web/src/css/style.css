@@ -468,6 +468,7 @@ td.rdtYear:hover {
   display: block;
   padding: 2.8rem 0;
   width: 100%;
+  background: #ef709d;
 }
 .table td {
   width: 3rem;
